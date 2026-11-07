@@ -30,11 +30,12 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 15px;
+            padding: 10px;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            transition: opacity 0.8s ease-in-out;
+            -webkit-background-size: cover;
+            transition: opacity 0.6s ease-in-out;
         }
 
         .page.active { display: flex; }
@@ -42,33 +43,33 @@
         .content-container {
             width: 100%;
             height: 100%;
-            max-width: 800px;
+            max-width: 750px;
             position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 10px 10px 70px 10px; /* فضای خالی در پایین برای دکمه‌ها که روی متن نیفتن */
+            padding: 10px 10px 65px 10px;
         }
 
-        /* کادر پشت متن شیشه‌ای و واکنش‌گرا */
+        /* کادر شیشه‌ای پشت متن (متناسب با صفحه موبایل) */
         .text-box-wrapper {
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            padding: 20px;
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
-            max-width: 750px;
+            background: rgba(255, 255, 255, 0.22);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            padding: 15px 20px;
+            border-radius: 14px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
             width: 100%;
-            max-height: 70vh; /* جلوگیری از بلند شدن بیش از حد کادر */
-            overflow-y: auto; /* اسکرول خوردن متن‌های طولانی در صفحات کوچک موبایل */
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-height: 68vh;
+            overflow-y: auto;
+            border: 1px solid rgba(255, 255, 255, 0.25);
         }
 
         .text-content {
-            font-size: 1.05rem; /* مناسب برای موبایل و آیفون */
-            line-height: 2;
+            font-size: 0.92rem; /* فونت کوچک‌تر و کاملاً خوانا برای آیفون */
+            line-height: 1.85;
             white-space: pre-line;
             display: inline-block;
             width: 100%;
@@ -78,7 +79,7 @@
                  1px -1px 0 #000,
                 -1px  1px 0 #000,
                  1px  1px 0 #000,
-                 0 2px 4px rgba(0,0,0,0.6);
+                 0 2px 3px rgba(0,0,0,0.6);
         }
 
         .text-content span.emoji {
@@ -87,7 +88,7 @@
         }
 
         .page-16-text {
-            font-size: 1.05rem;
+            font-size: 0.95rem; /* کوچک‌تر شدن متن صفحه آخر */
             line-height: 2;
             white-space: pre-line;
             display: inline-block;
@@ -96,23 +97,23 @@
             text-shadow: none !important;
         }
 
-        /* دکمه‌های ثابت و استاندارد بدون تداخل با متن */
+        /* دکمه‌های ناوبری مرتب و بدون تداخل */
         .nav-btn {
             color: #fff;
             border: none;
-            padding: 10px 20px;
-            font-size: 0.85rem;
-            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 0.8rem;
+            border-radius: 6px;
             cursor: pointer;
             font-family: 'Vazirmatn', sans-serif;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
             position: absolute;
             bottom: 15px;
             z-index: 10;
         }
 
-        .nav-btn:hover { transform: scale(1.03); opacity: 0.9; }
+        .nav-btn:hover { transform: scale(1.02); opacity: 0.9; }
 
         .page-16-container {
             height: 100vh;
@@ -135,32 +136,23 @@
 
         .scrolling-text {
             position: absolute;
-            animation: scrollUp 42s linear infinite;
+            /* سرعت حرکت متن صفحه ۱۶ کندتر شد (از ۴۲ ثانیه به ۶۵ ثانیه) */
+            animation: scrollUp 65s linear infinite;
             padding: 20px;
-            max-width: 750px;
+            max-width: 700px;
             width: 90%;
         }
 
         @keyframes scrollUp {
             0% { transform: translateY(110vh); }
-            100% { transform: translateY(-120%); }
+            100% { transform: translateY(-130%); }
         }
 
-        /* تنظیمات خاص برای صفحه‌نمایش‌های کوچک‌تر (موبایل و آیفون) */
         @media (max-width: 480px) {
-            .text-content, .page-16-text {
-                font-size: 0.95rem;
-                line-height: 1.8;
-            }
-            .text-box-wrapper {
-                padding: 15px;
-                max-height: 65vh;
-            }
-            .nav-btn {
-                padding: 8px 16px;
-                font-size: 0.8rem;
-                bottom: 15px;
-            }
+            .text-content { font-size: 0.86rem; line-height: 1.7; }
+            .page-16-text { font-size: 0.88rem; line-height: 1.9; }
+            .text-box-wrapper { padding: 12px 15px; max-height: 62vh; }
+            .nav-btn { padding: 7px 14px; font-size: 0.75rem; bottom: 12px; }
         }
     </style>
 </head>
@@ -176,6 +168,14 @@
 </div>
 
 <script>
+    // پیش‌بارگذاری عکس‌ها جهت لود سریع‌تر در آیفون
+    const preloadImages = [];
+    for (let i = 1; i <= 15; i++) {
+        const img = new Image();
+        img.src = `ax${i}.jpg`;
+        preloadImages.push(img);
+    }
+
     function formatTextWithEmojis(text) {
         return text.replace(/([\uD800-\uDBFF][\uDC00-\uDFFF]|\u261d|\uFE0F|[\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|\uD83E[\uDD00[\uDDFF])/g, '<span class="emoji">$1</span>');
     }
@@ -189,14 +189,14 @@
             bgStyle: "background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #31103f 100%);",
             customHtml: `
                 <div class="content-container">
-                    <div class="text-box-wrapper" style="background: rgba(15, 23, 42, 0.45); border: 1px solid rgba(255, 255, 255, 0.15);">
+                    <div class="text-box-wrapper" style="background: rgba(15, 23, 42, 0.5); border: 1px solid rgba(255, 255, 255, 0.15);">
                         <div class="text-content" style="background: linear-gradient(45deg, #f43f5e, #c084fc, #60a5fa, #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: none;">
                             خب سلام به فاطمه خانوم عزیزدل من <span class="emoji" style="-webkit-text-fill-color: initial;">💕💕💕</span><br>
                             اول از همه تولدت مبارکک<br>
                             کلیک کن که میخوام به مناسبت تولدت چندتا از خاطره های قشنگمونو باهم دور کنیم<span class="emoji" style="-webkit-text-fill-color: initial;">🙂‍↔️❤️</span>
                         </div>
                     </div>
-                    <button class="nav-btn" onclick="nextPage(1)" style="background: #f472b6; color: #fff; font-weight: 700; right: 20px;">برای مهربون ترین فاطمه‌ی دنیا 🤍</button>
+                    <button class="nav-btn" onclick="nextPage(1)" style="background: #f472b6; color: #fff; font-weight: 700; right: 15px;">برای مهربون ترین فاطمه‌ی دنیا 🤍</button>
                 </div>
             `
         },
@@ -383,7 +383,7 @@
             let coloredTextHTML = '';
             lines.forEach((line, lineIdx) => {
                 const assignedColor = customColors[lineIdx % customColors.length];
-                coloredTextHTML += `<span style="color: ${assignedColor}; display: inline-block; width: 100%; margin-bottom: 6px;">${formatTextWithEmojis(line)}</span>`;
+                coloredTextHTML += `<span style="color: ${assignedColor}; display: inline-block; width: 100%; margin-bottom: 5px;">${formatTextWithEmojis(line)}</span>`;
             });
 
             pageDiv.innerHTML = `
@@ -394,10 +394,10 @@
                 </div>
             `;
         } else {
-            let buttonsHTML = `<button class="nav-btn" onclick="nextPage(${index + 1})" style="background: ${page.color}; color: #111; font-weight: 700; right: 20px;">${page.btn}</button>`;
+            let buttonsHTML = `<button class="nav-btn" onclick="nextPage(${index + 1})" style="background: ${page.color}; color: #111; font-weight: 700; right: 15px;">${page.btn}</button>`;
 
             if (index > 0) {
-                buttonsHTML += `<button class="nav-btn" onclick="prevPage(${index - 1})" style="background: rgba(0,0,0,0.7); color: #fff; left: 20px; padding: 10px 16px; font-size: 0.8rem;">قبلی ↩</button>`;
+                buttonsHTML += `<button class="nav-btn" onclick="prevPage(${index - 1})" style="background: rgba(0,0,0,0.75); color: #fff; left: 15px; padding: 8px 14px; font-size: 0.78rem;">قبلی ↩</button>`;
             }
 
             pageDiv.innerHTML = `
@@ -433,7 +433,7 @@
             setTimeout(() => {
                 const nextP = document.getElementById(`page-${index}`);
                 if (nextP) nextP.classList.add('active');
-            }, 80);
+            }, 60);
         }
     }
 
@@ -450,7 +450,7 @@
         setTimeout(() => {
             const preventP = document.getElementById(`page-${index}`);
             if (preventP) preventP.classList.add('active');
-        }, 80);
+        }, 60);
     }
 
     window.addEventListener('click', () => {
@@ -461,7 +461,7 @@
             }
         } else {
             if(music.paused) {
-                music.play().catch(e => console.log("Audio 1 file play blocked", e));
+                music.play().catch(e => console.log("Audio 1 play blocked", e));
             }
         }
     }, { once: true });
