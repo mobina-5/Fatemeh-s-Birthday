@@ -2,10 +2,10 @@
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Happy Birthday Fatemeh</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap');
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -17,6 +17,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            width: 100vw;
         }
 
         #app { width: 100%; height: 100%; position: relative; }
@@ -29,9 +30,10 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 30px;
+            padding: 15px;
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
             transition: opacity 0.8s ease-in-out;
         }
 
@@ -40,37 +42,37 @@
         .content-container {
             width: 100%;
             height: 100%;
-            max-width: 850px;
+            max-width: 800px;
             position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 40px;
+            padding: 10px 10px 70px 10px; /* فضای خالی در پایین برای دکمه‌ها که روی متن نیفتن */
         }
 
-        /* کادر پشت متن بسیار کمرنگ و شیشه‌ای برای صفحات ۱ تا ۱۵ */
+        /* کادر پشت متن شیشه‌ای و واکنش‌گرا */
         .text-box-wrapper {
             background: rgba(255, 255, 255, 0.25);
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
-            padding: 30px 40px;
+            padding: 20px;
             border-radius: 16px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
             max-width: 750px;
             width: 100%;
-            margin-bottom: 40px;
+            max-height: 70vh; /* جلوگیری از بلند شدن بیش از حد کادر */
+            overflow-y: auto; /* اسکرول خوردن متن‌های طولانی در صفحات کوچک موبایل */
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .text-content {
-            font-size: 1.25rem;
-            line-height: 2.2;
+            font-size: 1.05rem; /* مناسب برای موبایل و آیفون */
+            line-height: 2;
             white-space: pre-line;
             display: inline-block;
             width: 100%;
             font-weight: 700;
-            /* دورگیری (سایه) مشکی دور حروف برای صفحات ۱ تا ۱۵ */
             text-shadow: 
                 -1px -1px 0 #000,  
                  1px -1px 0 #000,
@@ -81,13 +83,12 @@
 
         .text-content span.emoji {
             display: inline-block;
-            text-shadow: none !important; /* ایموجی‌ها بدون دورگیری برای حفظ رنگ طبیعی */
+            text-shadow: none !important;
         }
 
-        /* استایل مخصوص متن صفحه ۱۶ بدون سایه */
         .page-16-text {
-            font-size: 1.15rem;
-            line-height: 2.2;
+            font-size: 1.05rem;
+            line-height: 2;
             white-space: pre-line;
             display: inline-block;
             width: 100%;
@@ -95,19 +96,20 @@
             text-shadow: none !important;
         }
 
-        /* دکمه‌های مستطیلی */
+        /* دکمه‌های ثابت و استاندارد بدون تداخل با متن */
         .nav-btn {
             color: #fff;
             border: none;
-            padding: 10px 22px;
-            font-size: 0.9rem;
-            border-radius: 6px;
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            border-radius: 8px;
             cursor: pointer;
             font-family: 'Vazirmatn', sans-serif;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
             position: absolute;
-            bottom: 25px;
+            bottom: 15px;
+            z-index: 10;
         }
 
         .nav-btn:hover { transform: scale(1.03); opacity: 0.9; }
@@ -120,7 +122,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            /* بک‌گراند متحرک با طیف صورتی‌های بسیار روشن و ملایم */
             background: linear-gradient(-45deg, #ffe4e6, #fbcfe8, #fdf2f8, #fce7f3, #fae8ff);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
@@ -143,6 +144,23 @@
         @keyframes scrollUp {
             0% { transform: translateY(110vh); }
             100% { transform: translateY(-120%); }
+        }
+
+        /* تنظیمات خاص برای صفحه‌نمایش‌های کوچک‌تر (موبایل و آیفون) */
+        @media (max-width: 480px) {
+            .text-content, .page-16-text {
+                font-size: 0.95rem;
+                line-height: 1.8;
+            }
+            .text-box-wrapper {
+                padding: 15px;
+                max-height: 65vh;
+            }
+            .nav-btn {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+                bottom: 15px;
+            }
         }
     </style>
 </head>
@@ -178,7 +196,7 @@
                             کلیک کن که میخوام به مناسبت تولدت چندتا از خاطره های قشنگمونو باهم دور کنیم<span class="emoji" style="-webkit-text-fill-color: initial;">🙂‍↔️❤️</span>
                         </div>
                     </div>
-                    <button class="nav-btn" onclick="nextPage(1)" style="background: #f472b6; color: #fff; font-weight: 700; right: 40px;">برای مهربون ترین فاطمه‌ی دنیا 🤍</button>
+                    <button class="nav-btn" onclick="nextPage(1)" style="background: #f472b6; color: #fff; font-weight: 700; right: 20px;">برای مهربون ترین فاطمه‌ی دنیا 🤍</button>
                 </div>
             `
         },
@@ -360,7 +378,6 @@
         if (index === 0) {
             pageDiv.innerHTML = page.customHtml;
         } else if (index === pages.length - 1) {
-            // صفحه ۱۶ با بک‌گراند صورتی خیلی روشن متحرک و پالت رنگی متن
             const customColors = ["#1f2e5a", "#5a70c4", "#412896", "#8269d7", "#110c26", "#036ca6"];
             const lines = page.text.trim().split('\n');
             let coloredTextHTML = '';
@@ -377,10 +394,10 @@
                 </div>
             `;
         } else {
-            let buttonsHTML = `<button class="nav-btn" onclick="nextPage(${index + 1})" style="background: ${page.color}; color: #111; font-weight: 700; right: 40px;">${page.btn}</button>`;
+            let buttonsHTML = `<button class="nav-btn" onclick="nextPage(${index + 1})" style="background: ${page.color}; color: #111; font-weight: 700; right: 20px;">${page.btn}</button>`;
 
             if (index > 0) {
-                buttonsHTML += `<button class="nav-btn" onclick="prevPage(${index - 1})" style="background: rgba(0,0,0,0.65); color: #fff; left: 40px; padding: 10px 18px; font-size: 0.85rem;">قبلی ↩</button>`;
+                buttonsHTML += `<button class="nav-btn" onclick="prevPage(${index - 1})" style="background: rgba(0,0,0,0.7); color: #fff; left: 20px; padding: 10px 16px; font-size: 0.8rem;">قبلی ↩</button>`;
             }
 
             pageDiv.innerHTML = `
@@ -431,8 +448,8 @@
 
         document.querySelector('.page.active').classList.remove('active');
         setTimeout(() => {
-            const prevP = document.getElementById(`page-${index}`);
-            if (prevP) prevP.classList.add('active');
+            const preventP = document.getElementById(`page-${index}`);
+            if (preventP) preventP.classList.add('active');
         }, 80);
     }
 
@@ -444,7 +461,7 @@
             }
         } else {
             if(music.paused) {
-                music.play().catch(e => console.log("Audio 1 play blocked", e));
+                music.play().catch(e => console.log("Audio 1 file play blocked", e));
             }
         }
     }, { once: true });
@@ -452,4 +469,3 @@
 
 </body>
 </html>
-
